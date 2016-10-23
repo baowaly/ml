@@ -32,8 +32,8 @@ precision <- testResult$byClass['Pos Pred Value']
 recall <- testResult$byClass['Sensitivity']
 f1score <- 2 * ((precision * recall) / (precision + recall))
 
-print(paste0("Test Accuracy: ", testAccuracy))
-print(paste0("Precision: ", precision))
-print(paste0("Recall: ", recall))
-print(paste0("F1score: ", f1score))
+cat("Test Accuracy: ", testAccuracy)
+cat("Precision: ", precision)
+cat("Recall: ", recall)
+cat("F1score: ", f1score)
 #########################################################
