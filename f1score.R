@@ -37,22 +37,3 @@ print(paste0("Precision: ", precision))
 print(paste0("Recall: ", recall))
 print(paste0("F1score: ", f1score))
 #########################################################
-
-###############Your Method###########################
-result.compare <- table(validation$diabetes, predictions)
-## predict TRUE actual TRUE
-tp <- result.compare[4]
-## predict TRUE actual FALSE
-fp <- result.compare[3]
-## predict FALSE actual TRUE
-fn <- result.compare[2]
-## predict FALSE actual FALSE
-tn <- result.compare[1]
-
-precision <- tp / (tp+fp)
-recall <- tp / (tp+fn)
-f.score <- (2*precision*recall)/(precision+recall)
-print(paste0("Precision: ", precision))
-print(paste0("Recall: ", recall))
-print(paste0("F1score: ", f.score))
-######################################################
