@@ -2,7 +2,7 @@
 library(caret)
 library(mlbench)
 # load the dataset
-db<-get(data(PimaIndiansDiabetes))
+data(PimaIndiansDiabetes)
 
 # create a list of 80% of the rows in the original dataset we can use for training
 validation_index <- createDataPartition(PimaIndiansDiabetes$diabetes, p=0.80, list=FALSE)
@@ -12,18 +12,18 @@ validation <- PimaIndiansDiabetes[-validation_index,]
 dataTrain <- PimaIndiansDiabetes[validation_index,]
 
 # prepare resampling method
-control <- trainControl(method="cv", number=5)
+control <- trainControl(method="repeatedcv", number=10, repeats=5)
 set.seed(7)
 fit <- train(diabetes~., data=dataTrain, method="glm", metric="Accuracy", trControl=control)
 # display results
 #print(fit)
 trainingAccuracy <- fit$results$Accuracy
-print(paste0("Training Accuracy: ", trainingAccuracy))
+cat("Training Accuracy: ", trainingAccuracy)
 
 
 # estimate skill of the validation dataset
 predictions <- predict(fit, validation)
-testResult <- confusionMatrix(predictions, validation$diabetes)
+testResult <- confusionMatrix(predictions, validation$diabetes, positive="pos")
 #print(testResult)
 
 ################Built-in Method###########################
