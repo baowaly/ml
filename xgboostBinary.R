@@ -18,7 +18,7 @@ xgbTestData <- xgb.DMatrix(data.matrix(dataTest[,1:8]), label=(dataTest$diabetes
 
 #train the model
 param <- list(booster = "gblinear", max.depth = 5, eta = 1, eval_metric = "error", objective = "binary:logistic")
-bst <- xgb.train(param, data = xgbTrainData, nthread = 2, nround = 2, watchlist)
+bst <- xgb.train(param, data = xgbTrainData, nthread = 2, nround = 2)
 
 #predic
 pred <- predict(bst, xgbTestData)
